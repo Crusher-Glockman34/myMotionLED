@@ -39,8 +39,9 @@
 
 1. Build → a perfectly named .bin appears in the `releases/` folder
 2. Open `http://your-device-ip/update`
-3. Select **Firmware** mode → upload the .bin
-4. Click **Reboot Device** on the main page → new firmware boots instantly
+3. Enter username: admin and Password: admin1234
+4. Select **Firmware** mode → upload the .bin
+5. Click **Reboot Device** on the main page → new firmware boots instantly
 
 ## Screenshots
 
