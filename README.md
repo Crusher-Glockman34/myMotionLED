@@ -9,10 +9,12 @@
 ## Features
 
 - 4 × 75-LED strips (300 total) driven by FastLED on a Heltec WiFi Kit 32 V3
-- 14 stunning effects including Rainbow, realistic Fire, StarField, Christmas twinkle, 9-1-1, solid colors, and CycleAll
+- 14 stunning effects including Rainbow, realistic Fire, StarField, Christmas twinkle, 9-1-1, solid colors, and Demo
 - Full-featured responsive web interface (mobile-friendly)
 - Daily on/off scheduler with 15-minute granularity and automatic DST handling (US rules)
 - True Over-The-Air (OTA) firmware updates via ElegantOTA at `/update` (password protected)
+- Scheduler with selectable On Time, Off Time and days of week check boxes
+- Master/Slave option that synchronizes settings from one master to many slave devices
 - Automatic versioned .bin creation on every build (`myMotionLED_vX.Y.Z_YYYYMMDD-HHMM.bin`)
 - Firmware version displayed on main page
 - OLED status display with configurable timeout
