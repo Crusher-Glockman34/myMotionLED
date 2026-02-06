@@ -9,12 +9,12 @@
 ## Features
 
 - 4 × 75-LED strips (300 total) driven by FastLED on a Heltec WiFi Kit 32 V3
-- 14 stunning effects including Rainbow, realistic Fire, StarField, Christmas twinkle, 9-1-1, solid colors, and Demo
+- 14 stunning effects including Rainbow, realistic Fire, StarField, Christmas twinkle, 9-1-1, solid colors, and CycleAll
 - Full-featured responsive web interface (mobile-friendly)
+- Spectrum analyzer + VU meter with on-page toggle
+- Reverse LED direction option for Fire and Spectrum/VU effects
 - Daily on/off scheduler with 15-minute granularity and automatic DST handling (US rules)
 - True Over-The-Air (OTA) firmware updates via ElegantOTA at `/update` (password protected)
-- Scheduler with selectable On Time, Off Time and days of week check boxes
-- Master/Slave option that synchronizes settings from one master to many slave devices
 - Automatic versioned .bin creation on every build (`myMotionLED_vX.Y.Z_YYYYMMDD-HHMM.bin`)
 - Firmware version displayed on main page
 - OLED status display with configurable timeout
@@ -28,6 +28,41 @@
 - 4 × WS2812B LED strips (75 LEDs each) on GPIO 2,3,4,5
 - On-board 0.96″ OLED (SSD1306)
 - GPIO 0 button (short press = wake OLED, long press = reset WiFi settings)
+- 2 × INMP441 I2S microphones (stereo)
+
+## Microphone Wiring (INMP441 x2)
+
+Both mics share the same I2S bus. The L/R pin selects which channel each mic transmits on.
+
+- I2S WS (LRCLK): GPIO 7
+- I2S SCK (BCLK): GPIO 6
+- I2S SD (DATA): GPIO 19
+
+Left mic (L/R = GND):
+
+- VDD -> 3.3V
+- GND -> GND
+- L/R -> GND
+- WS -> GPIO 7
+- SCK -> GPIO 6
+- SD -> GPIO 19
+
+Right mic (L/R = 3.3V):
+
+- VDD -> 3.3V
+- GND -> GND
+- L/R -> 3.3V
+- WS -> GPIO 7
+- SCK -> GPIO 6
+- SD -> GPIO 19
+
+## Spectrum Notes
+
+- Spectrum/VU mode is toggled from the main web page.
+- Reverse Direction flips the LED start position for Fire and Spectrum/VU effects.
+- Crossover behavior uses BLEND_LEDS as an overwrite/soften zone.
+- When a lower band reaches the boundary, it can overwrite into the next band by up to BLEND_LEDS LEDs.
+- The overwrite range scales with the lower band strength and softens linearly into the upper band color.
 
 ## Installation / First Boot
 
@@ -38,6 +73,8 @@
 5. Open the IP shown on the OLED (or find `myMotionLED_XX.local`) in your browser
 
 ## Updating Firmware (OTA)
+
+OTA credentials: username `admin`, password `admin1234`.
 
 1. Build → a perfectly named .bin appears in the `releases/` folder
 2. Open `http://your-device-ip/update`
